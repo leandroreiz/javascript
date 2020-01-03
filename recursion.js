@@ -8,7 +8,7 @@ let factorial = function fac(num) {
 };
 
 const final = factorial(5);
-console.log(final);
+//console.log(final);
 
 /**************************************
  * Ilustrating Recursion with factorial
@@ -22,23 +22,4 @@ console.log(final);
  *      5 * 24 = 120 (result)
  * 
  * Using the Google Dev tools (debugger) you can easily see all the process. When the functions are stacking and, after reaching the end, unstacking.
- 
-Given a string, find all possible palindromic partitions of given string.
-
- input:
-    nitin
- output:
-    n i t i n
-    n iti n
-    nitin
-
- input:
-    geeks
- output:
-    g e e k s
-    g ee k s
-*/
-
-const isPalindromic = (string) => {
-    string.map(0,)
-}
+ */
