@@ -195,6 +195,7 @@ a.sort((x, y) => x < y);
 
 console.log('a: ', a);
 */
+
 // 12. Iterate over an array
 var a = ['first', 'second', 'third', 'fourth'];
 
