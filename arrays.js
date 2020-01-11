@@ -194,7 +194,7 @@ var a = ['c', 'a', 'd', 'b', 'aa'];
 a.sort((x, y) => x < y);
 
 console.log('a: ', a);
-*/
+
 
 // 12. Iterate over an array
 var a = ['first', 'second', 'third', 'fourth'];
@@ -202,3 +202,22 @@ var a = ['first', 'second', 'third', 'fourth'];
 for (let e of a) {
     console.log('e: ', e);
 }
+*/
+
+function modifyArray(nums) {
+    
+    let arr = [];
+
+    nums.forEach(e => {
+        if (e % 2 === 0) {
+            arr.push(e * 2);
+        }
+        else {
+            arr.push(e * 3);
+        }
+    });
+
+    return arr;
+}
+
+console.log(modifyArray([1,2,3,4,5]));
