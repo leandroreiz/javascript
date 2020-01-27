@@ -78,7 +78,7 @@ console.log('\'x\':', x);
 console.log('Object \'o\':', o);
 console.log('Property \'o.a\':', o.a);
 console.log('Method \'o.foo()\':', o.foo());
-*/
+
 // Using a Constructor Function
 
 function Actor(firstName, lastName, Age) {
@@ -92,3 +92,49 @@ var a2 = new Actor('Kate', 'Winslet', 40);
 
 console.log('Object \'a1\':', a1);
 console.log('Object \'a2\':', a2);
+
+
+// from: https://www.youtube.com/watch?v=4uVwGw317QM
+
+let person = new Object();
+
+person.name = "Daniel";
+person.eyeColor = "Blue";
+person.age = 27;
+person.updateAge = function() {
+    return ++person.age;
+}
+
+console.log(person.age);
+person.updateAge();
+console.log(person.age);
+
+// short way to creat an object
+let person = {
+    name: "Daniel",
+    eyeColor: "Blue",
+    age: 27,
+
+    updateAge: function() {
+        return ++person.age;
+    }
+}
+*/
+// object constructor
+function Person(name, eyeColor, age) {
+    // person properties
+    this.name = name;
+    this.eyeColor = eyeColor;
+    this.age = age;
+    
+    // person methods
+    this.updateAge = function() {
+        return ++this.age;
+    };
+}
+
+let person01 = new Person("Leandro", "Green", 36);
+let person02 = new Person("Chelem", "Brown", 33);
+console.log(person01.age);
+person01.updateAge();
+console.log(person01.age);
