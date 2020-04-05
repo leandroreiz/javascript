@@ -17,3 +17,4 @@ X(); // X() invoked the first time
 X(); // X() invoked the second time
 X(); // X() invoked the third time
 Y(); // Y() invoked the first time
+X(); // X() invoked the fourth time and the value of b (incremented n times) stills there due to closures
