@@ -565,3 +565,72 @@ When `X()` is invoked the third time, the variable `a` is created anew, and set 
 When `Y()` is invoked the first time, the variable `a` is created anew, and set to 20. The value of `b` is from the closure value — b(second_time), so b is equals 10. Variables `a` and `b` are incremented by 1. The function `Y()` completes execution, and all its inner variables — variable a — cease to exist. However, b(second_time) was preserved as the closure, so b(second_time) continues to exist.
 
 If you go beyond and invoke the function `X()` a fourth time, you'll notice that the value returned for `b` will be 12 (13 after incrementing it by 1). That happens because the variable `b` stills within the `X()` scope.
+
+## Template Literals (Template Strings)
+
+Template literals (formerly known as template strings) are string literals that allow for embedded expressions. We typically use them to express strings spanning multiple lines or for string interpolation, which essentially allows us to create a template with one or more placeholders for inserting variable text at a later time.
+
+While traditional strings are wrapped in single or double quotes, template literals are wrapped in backtick (\`) characters. A template literal can contain placeholders, which are preceded by a dollar sign ($) and wrapped in curly braces ({}). For example, in the template literal `${expression}`, the  text between the placeholders is passed to a function. The default function simply concatenates the template literal's parts into a single string.
+
+Any time we see an expression preceding a template literal, we call the expression a tag and the template string a tagged template literal. In these instances, we call the tag expression (typically a function) with the processed template literal, which we can then manipulate before outputting the final string.
+
+```javascript
+// multi-line strings
+// normal strings
+console.log("first line\n" + "second line");
+console.log("first line" + "\nsecond line");
+console.log("first line\nsecond line");
+
+// template literals
+console.log(`first line
+second line`);
+
+const a = 2;
+const b = 3;
+
+// expression Interpolation
+// normal strings
+console.log(
+    'The sum of a and b is ' + (a + b) + '.\n' 
+    + 'The product of a and b is ' + (a * b) + '.'
+);
+
+console.log(`The sum of a and b is ${a + b}.
+The product of a and b is ${a * b}.`);
+```
+
+A more advanced form of template literals are tagged templates.
+
+Tags allow you to parse template literals with a function. The first argument of a tag function contains an array of string values. The remaining arguments are related to the expressions.
+
+The tag function can then perform whatever operations on these arguments you wish, and return the manipulated string. (Alternatively, it can return something completely different, as described in one of the following examples.) 
+
+The name of the function used for the tag can be whatever you want.
+
+```javascript
+let person = 'Leandro';
+let age = 28;
+
+function myTag(strings, personExp, ageExp) {
+    let str0 = strings[0]; // "That "
+    let str1 = strings[1]; // " is a "
+
+    // There is technically a string after the final expression (in our example), but it is empty (""), so disregard.
+    // var str2 = string[2];
+
+    let ageStr;
+    if (ageExp > 99) {
+        ageStr = 'centenarian';
+    } else {
+        ageStr = 'youngster';
+    }
+
+    // we can even return a string built using a template literal
+    return `${str0}${personExp}${str1}${ageStr}.`;
+}
+
+// "That " and " is a " are strings passed as parameters and the placeholders are passed as parameters aswell
+let output = myTag`That ${person} is a ${age}`;
+
+console.log(output);
+```
