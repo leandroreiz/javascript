@@ -68,7 +68,7 @@ let greeting = ( isBirthday ) ? 'Happy birthday Mrs. Smith — we hope you have 
 
 ## Loops and iteration
 
-Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration
+Source: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration>
 
 Loops offer a quick and easy way to do something repeatedly.
 
@@ -325,6 +325,85 @@ console.log(chelem);
 console.log(chelem.age);
 ```
 
+## Var, let and const
+
+Source: <https://dev.to/sarah_chima/var-let-and-const--whats-the-difference-69e>
+
+One of the features that came with ES2015 (ES6) is addition of ```let``` and ```const``` which can be used for variable declaration. But what make them different from ```var``` declaration?
+
+In this article, var, let and const will be discussed with respect to their scope, use and hoisting. As you read, take note of the differences between them I'll point out.
+
+### Var
+
+- ```var``` declarations are globally scoped or function/locally scoped.
+- ```var``` variables can be re-declared and updated.
+- ```var``` variables are hoisted (see hoisting for more) to the top of its scope and initialized with a value of undefined.
+
+#### Problem with var
+
+There's a weakness that comes with ```var```. I'll use the example below to explain this.
+
+```javascript
+var greeter = "hey hi";
+var times = 4;
+
+if (times > 3) {
+    var greeter = "say Hello instead"; 
+}
+
+console.log(greeter) //"say Hello instead"```
+```
+
+So, since ```times > 3``` returns true, greeter is redefined to "say Hello instead". While this is not a problem if you knowingly want greeter to be redefined, it becomes a problem when you do not realize that a variable greeter has already been defined before.
+If you have use greeter in other parts of your code, you might be surprised at the output you might get. This might cause a lot of bugs in your code. This is why the let and const is necessary.
+
+### Let
+
+```let``` is preferred for variable declaration now. It's no surprise as it comes as an improvement to the var declarations. It also solves this problem that was raised in the last subheading. Let's consider why this is so.
+
+- ```let``` is block scoped, a block is a chunk of code bounded by {}.
+- ```let``` can be updated but not re-declared.
+
+This fact makes ```let``` a better choice than ```var```. When using ```let```, you don't have to bother if you have used a name for a variable before as a variable exists only within its scope. Also, since a variable cannot be declared more than once within a scope, then the problem discussed earlier that occurs with var does not occur.
+
+- ```let``` declarations are hoisted, just like ```var```, to the top. Unlike var which is initialized as ```undefined```, the let keyword is not initialized. So if you try to use a let variable before declaration, you'll get a Reference Error.
+
+### Const
+
+Variables declared with the ```const``` maintain constant values. ```const``` declarations share some similarities with ```let``` declarations.
+
+- ```const``` cannot be updated or re-declared.
+Every ```const``` declaration therefore, must be initialized at the time of declaration. This behavior is somehow different when it comes to objects declared with ```const```. While a ```const``` object cannot be updated, the properties of this objects can be updated.
+
+- Just like ```let```, ```const``` declarations are hoisted to the top but are not initialized.
+
+#### So just in case, you missed the differences, here they are
+
+1. ```var``` declarations are globally scoped or function scoped while ```let``` and ```const``` are block scoped.
+
+2. ```var``` variables can be updated and re-declared within its scope; ```let``` variables can be updated but not re-declared; ```const``` variables can neither be updated nor re-declared.
+
+3. They are all hoisted to the top of their scope but while ```var``` variables are initialized with undefined, ```let``` and ```const``` variables are not initialized.
+
+4. While ```var``` and ```let``` can be declared without being initialized, ```const``` must be initialized during declaration.
+
+## Hoisting
+
+Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of their scope before code execution. What this means is that if we do this:
+
+```javascript
+console.log (greeter);
+var greeter = "say hello";
+```
+
+it is interpreted as this
+
+```javascript
+var greeter;
+console.log(greeter); //greeter is undefined
+greeter = "say hello";
+```
+
 ## Recursion
 
 Recursion is a technique where you break a problem into a small repeatable part and then you repeat that small part in order to solve the larger problem.
@@ -369,7 +448,7 @@ TIP: Using the Google Dev tools (debugger) you can easily see all the process. W
 
 ## Closures
 
-### What is a closure?
+### What is a closure
 
 A closure is a feature in JavaScript where an inner function has access to the outer (enclosing) function’s variables — a scope chain.
 
@@ -380,7 +459,7 @@ The closure has three scope chains:
 - it has access to the global variables
 
 Simplified definition:
-"...when you have a function defined inside another function, the inner function has access to the variables and scope of the outer function, even if the outer function finishes executing and those variables are no longer acessible outside that function." (https://www.youtube.com/watch?v=3a0I8ICR1Vg)
+"...when you have a function defined inside another function, the inner function has access to the variables and scope of the outer function, even if the outer function finishes executing and those variables are no longer acessible outside that function." (<https://www.youtube.com/watch?v=3a0I8ICR1Vg>)
 
 ```javascript
 function outer() {
@@ -427,7 +506,7 @@ X(); // X() invoked the fourth time
 
 When you run this code, you will see the following output in the console.log:
 
-```
+```javascript
 a=20 b=10
 a=20 b=11
 a=20 b=12
