@@ -1,4 +1,3 @@
-/*
 const items = [
     { name: 'Bike',     price: 100  },
     { name: 'TV',       price: 200  },
@@ -202,7 +201,6 @@ var a = ['first', 'second', 'third', 'fourth'];
 for (let e of a) {
     console.log('e: ', e);
 }
-*/
 
 function modifyArray(nums) {
     

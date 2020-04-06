@@ -185,6 +185,146 @@ The for...of statement creates a loop Iterating over iterable objects (including
 for (variable of object) statement;
 ```
 
+## Arrays
+
+An array is an ordered collection of data (either primitive or object depending upon the language). Arrays are used to store multiple values in a single variable. This is compared to a variable that can store only one value.
+
+Each item in an array has a number attached to it, called a numeric index, that allows you to access it. In JavaScript, arrays start at index zero and can be manipulated with various methods.
+
+```javascript
+// Declaring a new array
+let names = ['Chelem', 'Nina', 'Andre', 'Leonardo', 'Luiza', 'Guilherme'];
+let years = new Array(1986, 2015, 1986, 1975, 1946, 1949);
+
+// Printing the Array object
+console.log(names);
+
+// Retrieving data from arrays
+console.log(names[0]);
+
+// Inserting data using position
+names[2] = 'Bobby';
+names[10] = 'Lobo'; // notice here that the slots from 6 to 9 will be empty
+names[names.length] = 'Lucky'; // inserting data at the end
+
+// Iterating through an array
+for (let i = 0; i < names.length; i++) {
+    console.log('Name: ' + names[i]);
+}
+
+// Different data types
+let leandro = ['Leandro', 'Reis', 1983, 'developer', false];
+console.log(leandro);
+
+// INSERTING DATA INTO ARRAYS
+// at the end of it
+leandro.push('blue');
+console.log(leandro);
+
+// at the begin of it
+leandro.unshift('Mr.');
+console.log(leandro);
+
+// DELETING DATA FROM ARRAYS
+// removing the last item
+leandro.pop();
+console.log(leandro);
+
+// removing the first item
+leandro.shift();
+console.log(leandro);
+
+// Identify the index of an element of the array
+console.log('Position of 1983 in the array: ' + leandro.indexOf(1983));
+
+// If the search doesn't find the element the value -1 is returned
+console.log(leandro.indexOf('brazilian'));
+
+// another example, now using a ternary operator
+let isDesigner = leandro.indexOf('designer') === -1 ? leandro[0] + ' IS NOT a designer. He\'s a ' + leandro[3] + '.' : leandro[0] + ' IS a designer.';
+console.log(isDesigner);
+```
+
+## Objects
+
+### Objects and properties
+
+The Object class represents one of JavaScript's data types. It is used to store various keyed collections and more complex entities. Objects can be created using the Object() constructor or the object initializer / literal syntax.
+
+```javascript
+// Creating a new object with object literal syntax (curly braces)
+let leandro = {
+    firstName: 'Leandro',
+    lastName: 'Fernandes Reis',
+    birthYear: 1983,
+    family: ['Chelem', 'Nina', 'Nick', 'Lucky'],
+    job: 'developer',
+    isMarried: true
+};
+
+// Printing the object
+console.log(leandro);
+
+// We can access the properties using the dot notation...
+console.log(leandro.firstName);
+
+// ...or the brackets and also...
+console.log(leandro['lastName']);
+
+// ...using a variable.
+const birth = 'birthYear';
+console.log(leandro[birth]);
+
+// Mutating an object
+leandro.job = 'designer';
+leandro['isMarried'] = false;
+console.log(leandro);
+
+// Crating an object with the new Object syntax
+let chelem = new Object();
+chelem.firstName = 'Chelem';
+chelem['lastName'] = 'Rodrigues Matozinho'
+chelem.birthYear = 1986;
+
+console.log(chelem);
+```
+
+### Objects and methods
+
+JavaScript methods are actions that can be performed on objects.
+A JavaScript method is a property containing a function definition.
+
+```javascript
+// Creating a new object
+let leandro = {
+    firstName: 'Leandro',
+    lastName: 'Fernandes Reis',
+    birthYear: 1983,
+    family: ['Chelem', 'Nina', 'Nick', 'Lucky'],
+    job: 'developer',
+    isMarried: true,
+    // Defining a method is simply associating a function as a property
+    calculateAge: function(birthYear) {
+        return 2020 - birthYear;
+    }
+};
+
+console.log(leandro.calculateAge(1983));
+
+// Let's see another example but now using the 'this' keyword
+let chelem = new Object();
+
+chelem.firstName = 'Chelem';
+chelem.lastName = 'Rodrigues Matozinho';
+chelem.birthYear = 1986;
+chelem.calculateAge = function() {
+    this.age = 2020 - this.birthYear;
+}
+chelem.calculateAge();
+console.log(chelem);
+console.log(chelem.age);
+```
+
 ## Recursion
 
 Recursion is a technique where you break a problem into a small repeatable part and then you repeat that small part in order to solve the larger problem.
