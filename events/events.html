@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <style>
+        body
+        {
+            padding: 10% 20%;
+            color:darkgray;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .hide
+        {
+            display: none;
+        }
+        .container
+        {
+            height: 300px;
+            display: grid;
+            grid-template-columns: 50% 50%;
+        }
+        .images img
+        {
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>JavaScript Events</h1>
+    </header>
+    <main>
+        <h4>Add Numbers</h4>
+        <p>
+            <input id="num-one"> + <input id="num-two">
+        </p>
+        <p id="add-sum"></p>
+        <hr>
+        <h4>Pictures</h4>
+        <div class="container">
+            <div class="links">
+                <ul>
+                    <li><a data-img="bruce-pic" id="bruce" href="#">Bruce Willis</a></li>
+                    <li><a data-img="will-pic" id="will" href="#">Will Smith</a></li>
+                    <li><a data-img="jennifer-pic" id="jennifer" href="#">Jennifer Aniston</a></li>
+                </ul>
+            </div>
+            <div class="images">
+                <img class="hide" id="bruce-pic" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Bruce_Willis_by_Gage_Skidmore_3.jpg/800px-Bruce_Willis_by_Gage_Skidmore_3.jpg" alt="bruce">
+                <img class="hide" id="will-pic" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Will_Smith_by_Gage_Skidmore_2.jpg/800px-Will_Smith_by_Gage_Skidmore_2.jpg" alt="will">
+                <img class="hide" id="jennifer-pic" src="https://upload.wikimedia.org/wikipedia/commons/1/16/JenniferAnistonHWoFFeb2012.jpg" alt="jennifer">
+            </div>
+        </div>
+    </main>
+    
+    <script src="events0.js"></script>
+</body>
+</html>
