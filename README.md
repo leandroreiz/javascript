@@ -1030,3 +1030,56 @@ for (let i = 0; i < 3; i++) { // using let
     }, 1000);
 } // this will log the numbers 0, 1 and 2
 ```
+
+## this keyword
+
+### "...the keyword 'this' references the object that is executing the current function." - Mosh from Programming with Mosh YouTube channel
+
+source: <https://www.youtube.com/watch?v=gvicrj31JOM>
+
+```javascript
+// method -> obj
+// function -> global (window, global)
+
+const video = {
+    title: 'title a',
+    play() {
+        console.log(this);
+    }
+};
+
+video.stop = function () {
+    console.log(this);
+}
+
+video.play();   // the video obj will be printed as result
+video.stop();   // once again the video obj will be seen on the console
+                // this happens because 'stop' and 'play' are methods in the video object
+
+function playVideo() {
+    console.log(this);
+}
+
+playVideo();    // this will log the 'window' object on the console
+                // What if this is a constructor function? Let's see bellow:
+
+function Video(title) {
+    this.title = title;
+}
+
+const v = new Video('title b');     // this will log the object 'Video' on the console
+                                    // this happens because when we're using the 'new' keyword a new empty object is created and the 'this.title' is assigned to it.
+
+const video = {
+    title: 'title',
+    tags: ['tag a', 'tag b', 'tag c'],
+    showTags() {
+        this.tags.forEach(function(tag) {
+            console.log(this.title, tag);
+        }, this);
+        // we need to define the keyword 'this' as a parameter for the 'forEach' method to have access to the video object. This occurs because the function declared inside the 'forEach' is a simple function and not a method, so the 'this keyword' will point to the global scope.
+    }
+};
+
+video.showTags();
+```
