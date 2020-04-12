@@ -2,7 +2,7 @@
 
 ## Conditionals
 
-### Basic 'if ... else ... else if' syntax
+### Basic 'if...else if...else' syntax
 
 Basic if...else syntax looks like the following in pseudocode:
 
@@ -18,20 +18,20 @@ if (condition) {
 
 Comparison operators are used to test the conditions inside our conditional statements. We first looked at comparison operators back in our Basic math in JavaScript — numbers and operators article. Our choices are:
 
-=== and !== — test if one value is identical to, or not identical to, another.
-< and >     — test if one value is less than or greater than another.
-<= and >=   — test if one value is less than or equal to, or greater than or equal to, another.
+```===``` and ```!==``` test if one value is identical to, or not identical to, another.
+```<``` and ```>``` test if one value is less than or greater than another.
+```<=``` and ```>=``` test if one value is less than or equal to, or greater than or equal to, another.
 
 #### Logical operators: AND, OR and NOT
 
 If you want to test multiple conditions without writing nested if...else statements, logical operators can help you. When used in conditions, the first two do the following:
 
-&& — AND; allows you to chain together two or more expressions so that all of them have to individually evaluate to true for the whole expression to return true.
-|| — OR; allows you to chain together two or more expressions so that one or more of them have to individually evaluate to true for the whole expression to return true.
+```&&``` and ```AND``` allows you to chain together two or more expressions so that all of them have to individually evaluate to true for the whole expression to return true.
+```||``` and ```OR``` allows you to chain together two or more expressions so that one or more of them have to individually evaluate to true for the whole expression to return true.
 
 ### switch statements
 
-if...else statements do the job of enabling conditional code well, but they are not without their downsides. They are mainly good for cases where you've got a couple of choices, and each one requires a reasonable amount of code to be run, and/or the conditions are complex (for example, multiple logical operators). For cases where you just want to set a variable to a certain choice of value or print out a particular statement depending on a condition, the syntax can be a bit cumbersome, especially if you've got a large number of choices.
+```if...else``` statements do the job of enabling conditional code well, but they are not without their downsides. They are mainly good for cases where you've got a couple of choices, and each one requires a reasonable amount of code to be run, and/or the conditions are complex (for example, multiple logical operators). For cases where you just want to set a variable to a certain choice of value or print out a particular statement depending on a condition, the syntax can be a bit cumbersome, especially if you've got a large number of choices.
 
 In such a case, switch statements are your friend — they take a single expression/value as an input, and then look through a number of choices until they find one that matches that value, executing the corresponding code that goes along with it. Here's some more pseudocode, to give you an idea:
 
@@ -43,7 +43,7 @@ switch (expression) {
 
   case choice2:
     run this code instead
-    break;    
+    break;
   
   // include as many cases as you like
 
@@ -74,14 +74,14 @@ Loops offer a quick and easy way to do something repeatedly.
 
 The statements for loops provided in JavaScript are:
 
-for statement
-do...while statement
-while statement
+```for``` statement
+```do...while``` statement
+```while``` statement
 labeled statement
-continue statement
-break statement
-for...in statement
-for...of statement
+```continue``` statement
+```break``` statement
+```for...in``` statement
+```for...of``` statement
 
 ### for statement
 
@@ -348,7 +348,7 @@ var greeter = "hey hi";
 var times = 4;
 
 if (times > 3) {
-    var greeter = "say Hello instead"; 
+    var greeter = "say Hello instead";
 }
 
 console.log(greeter) //"say Hello instead"```
@@ -433,7 +433,7 @@ Recursion is a technique where you break a problem into a small repeatable part 
 
 ### Ilustrating Recursion with factorial
 
-```
+```javascript
 5 * factorial(4)
 5 * 4 * factorial(3)
 5 * 4 * 3 * factorial(2)
@@ -533,14 +533,14 @@ At this point, the variable `b` is enclosed within the inner function scope chai
 var Y = outer(); // outer() invoked the second time
 ```
 
-1. Variable `b` is created anew and is set to `10`
-2. Variable `c` is created anew.
+1.Variable `b` is created anew and is set to `10`
+2.Variable `c` is created anew.
 
 Note that even though `outer()` was executed once before variables `b` and `c` ceased to exist, once the function completed execution they are created as brand new variables.
 
 Let us call these `b(second_time)` and `c(second_time)` for our own reference.
 
-3. The inner function is returned and assigned to `Y`
+3.The inner function is returned and assigned to `Y`
 
 At this point the variable b is enclosed within the inner function scope chain as a closure with `b(second_time)=10`, since inner uses the variable `b`. The outer function completes execution, and all its variables cease to exist.
 
@@ -591,7 +591,7 @@ const b = 3;
 // expression Interpolation
 // normal strings
 console.log(
-    'The sum of a and b is ' + (a + b) + '.\n' 
+    'The sum of a and b is ' + (a + b) + '.\n'
     + 'The product of a and b is ' + (a * b) + '.'
 );
 
@@ -603,7 +603,7 @@ A more advanced form of template literals are tagged templates.
 
 Tags allow you to parse template literals with a function. The first argument of a tag function contains an array of string values. The remaining arguments are related to the expressions.
 
-The tag function can then perform whatever operations on these arguments you wish, and return the manipulated string. (Alternatively, it can return something completely different, as described in one of the following examples.) 
+The tag function can then perform whatever operations on these arguments you wish, and return the manipulated string. (Alternatively, it can return something completely different, as described in one of the following examples)
 
 The name of the function used for the tag can be whatever you want.
 
@@ -684,7 +684,7 @@ try {
 }
 
 //Example: Function Declaration
-alert(fooo()); 
+alert(fooo());
 function fooo() { return 'The Function Declaration (fooo) is loaded before any code can run, so the code succeed.'; }
 ```
 
@@ -1084,7 +1084,7 @@ const video = {
 video.showTags();
 ```
 
-## Spread Operators
+## Spread Operator
 
 source: <https://www.notion.so/The-Spread-Operator-b7608512fbd844ec9f27f31740fb7298>
 
@@ -1118,7 +1118,7 @@ const parents = ['Guilherme', 'Luiza'];
 const kids = ['Leonardo', 'Leandro', 'Andre'];
 // family = [parents, kids]     // this creates a nested array
 family = [...parents, ...kids]; // combines the arrays spread into one
-console.log(family);            
+console.log(family);
 
 const pets = ['Tony', 'Nina'];
 
@@ -1138,7 +1138,7 @@ console.log(copies);
 console.log(originals);         // ...does not affect the 'originals' array
 ```
 
-#### IMPORTANT: Spread only goes "one Level" deep when copying an array. It does not perform a deep copy of nested array.
+#### IMPORTANT: Spread only goes "one Level" deep when copying an array. It does not perform a deep copy of nested array
 
 ```javascript
 const gameBoard = [['O', 'O'], ['O', 'O'], ['O', 'O']];
@@ -1203,4 +1203,165 @@ function addTodo(newTodo) {
 const newTodos = addTodo({user: 'Mordecai', task: 'Feed Bloodwing'});
 console.log(todos);
 console.log(newTodos);
+```
+
+## Destructuring assignment
+
+The destructuring assignment syntax is a JavaScript expression that makes it possible to unpack values from arrays, or properties from objects, into distinct variables.
+
+### Destructuring Arrays
+
+```javascript
+// source: https://www.youtube.com/watch?v=NIq3qLaHCIs
+
+// declaring arrays
+const alphabet = ['A', 'B', 'C', 'D', 'E', 'F'];
+const numbers = [0, 1, 2, 3, 4, 5];
+
+// getting the first two elements of an array the old way
+// const a = alphabet[0]
+// const b = alphabet[1]
+
+// destructuring the 2 first elements of the array
+[x, y] = alphabet;
+console.log(x);     // A
+console.log(y);     // B
+
+// destructuring the first and the third element of the array
+[x, , y] = alphabet;
+console.log(x);     // A
+console.log(y);     // C
+
+// destructuring the whole array using the spread operator
+[x, , y, ...rest] = alphabet;
+console.log(x);     // A
+console.log(y);     // C
+console.log(rest);  // ["D", "E", "F"]
+
+// yet another example on how to use destructuring with arrays
+function sumAndMultiply(a, b) {
+    return [a+b, a*b]
+}
+
+const array = sumAndMultiply(3, 4);
+console.log(array);     // [7, 12]
+
+// Using destructuring with functions
+[sum, multiply] = sumAndMultiply(3, 4);
+console.log(sum);       // 7
+console.log(multiply);  // 12
+
+// setting default values while destructuring
+[sum, multiply, subtraction = 'no subtraction', division = 'no division'] = sumAndMultiply(2, 3);
+console.log(sum);           // 5
+console.log(multiply);      // 6
+console.log(subtraction);   // no subtraction
+console.log(division);      // no division
+
+function basicMathOp(a, b) {
+    return [a+b, a*b, a-b, a/b];
+}
+
+[sum, multiply, subtraction = 'no subtraction', division = 'no division'] = basicMathOp(4, 4);
+console.log(sum);           // 8
+console.log(multiply);      // 16
+console.log(subtraction);   // 0
+console.log(division);      // 1
+
+```
+
+### Destructuring Objects
+
+```javascript
+const personOne = {
+    name: 'Leandro',
+    age: 36,
+    address: {
+        city: 'Miami',
+        state: 'Florida'
+    }
+}
+
+const personTwo = {
+    name: 'Chelem',
+    age: 34,
+    address: {
+        city: 'Los Angeles',
+        county: 'California'
+    }
+}
+
+const personThree = {
+    age: 70,
+    address: {
+        city: 'Belo Horizonte',
+        county: 'Minas Gerais'
+    }
+}
+
+const personFour = {
+    name: 'Nina',
+    age: 5,
+    address: {
+        city: 'Belo Horizonte',
+        county: 'Minas Gerais'
+    },
+    favouriteFood: 'Banana'
+}
+
+// destructuring objects works pretty similar to arrays
+// you can define a variable name (name: firstName) or use the keys present at the object (age)
+const { name: firstName, age } = personOne;
+console.log(firstName);     // Leandro
+console.log(age);           // 36
+
+// using the spread operator
+const { name: firstName2, ...rest } = personTwo;
+console.log(firstName2);    // Chelem
+console.log(rest);          // {age: 34, address {...}}
+
+// setting a default value
+const { name: firstName3 = 'Not Inserted', age: age3 } = personThree;
+console.log(firstName3);    // Not Inserted
+console.log(age3);          // 70
+
+// destructuring nested objects
+const { name: firstName4, address: { city } } = personFour;
+console.log(firstName4);    // Nina
+console.log(city);          // Belo Horizonte
+
+// combining objects
+const personFive = {
+    age: 25,
+    favoriteFood: 'Pizza'
+}
+
+// combining personOne and personFive using destructuring and spread operator
+// notice that everything in personFive overwrites what is in personOne
+const personSix = { ...personOne, ...personFive };
+console.log(personSix);     // {name: "Leandro", age: 25, address: {…}, favoriteFood: "Pizza"}
+
+// declaring a function to print user details
+function printUser(user) {
+    console.log(`Name: ${user.name}, Age: ${user.age}`);
+}
+
+printUser(personOne);       // Name: Leandro, Age: 36
+
+// using destructuring with functions to get specific data from object
+function printUserName({ name, age }) {
+    console.log(`Name: ${name}, Age: ${age}`);
+}
+
+printUserName(personOne);   // Name: Leandro, Age: 36
+
+// setting a default value as a parameter
+function printFavoriteFood({ favouriteFood = 'Lasagna'}) {
+    console.log(`My favourite food is ${favouriteFood}`);
+}
+
+// don't have the key/value informed
+printFavoriteFood(personOne);   // My favourite food is Lasagna
+// has the favouriteFood set to 'Banana'
+printFavoriteFood(personFour);  // My favourite food is Banana
 ```
