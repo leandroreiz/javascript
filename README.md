@@ -1365,3 +1365,93 @@ printFavoriteFood(personOne);   // My favourite food is Lasagna
 // has the favouriteFood set to 'Banana'
 printFavoriteFood(personFour);  // My favourite food is Banana
 ```
+
+## Arrow Functions
+
+sources:
+<https://www.youtube.com/watch?v=h33Srr5J9nY>
+<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions>
+
+An arrow function expression is a syntactically compact alternative to a regular function expression, although without its own bindings to the this, arguments, super, or new.target keywords. Arrow function expressions are ill suited as methods, and they cannot be used as constructors.
+
+See the functions below:
+
+```javascript
+// named functions
+function sum(a, b) {
+    return a + b;
+}
+
+function isPositive(number) {
+    return number >= 0;
+}
+
+function randomNumber() {
+    return Math.random;
+}
+
+// anonymous function
+document.addEventListener('click', function() {
+    console.log('Click');
+})
+```
+
+Now the same functions but using arrow functions
+
+In the example below we can remove the curly braces once we have only one line of code and all that is after the arrow will be returned as result of the function.
+
+```javascript
+let arrowSum = (a, b) => a + b;
+```
+
+When we have a function with a single parameter we can also remove the parentheses and the arrow function will still work.
+
+``` javascript
+let arrowIsPositive = number => number >= 0;
+```
+
+In this case we don't have a parameter for the function, so we need to inform an openning and a closing parentheses before the arrow sign to indicates that this is an arrow function.
+
+```javascript
+let arrowRandomNumber = () => Math.random;
+```
+
+Calling an arrow function instead of an anonymous function:
+
+```javascript
+document.addEventListener('click', () => console.log('Click'));
+```
+
+But what really makes arrow functions important is the fact that they redefine the 'this' keyword inside of them, differently from the normal functions.
+
+```javascript
+class Person {
+    constructor(name) {
+        this.name = name;
+    }
+
+    printNameArrow() {
+        setTimeout(() => {
+            console.log('Arrow: ', this.name);
+        }, 100)
+    }
+
+    printNameFunction() {
+        setTimeout(function() {
+            console.log('Function: ', this.name);
+        }, 100)
+    }
+};
+
+let person = new Person('Leandro');
+person.printNameArrow();    // Leandro
+person.printNameFunction(); // Nothing is logged into the console
+```
+
+This happens because the normal function redefines the 'this' to the global scope and the arrow function doesn't redefine the 'this' keyword, leaving it referencing the scope where it was previously defined.
+
+```javascript
+console.log(this.name);
+```
+
+As the 'printNameFunction', nothing is logged into the console because 'this.name' is not defined in the global scope (window object).
