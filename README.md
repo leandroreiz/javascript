@@ -1562,9 +1562,11 @@ const companies = [
 ];
 
 const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32];
+```
 
-//********* forEach */
+## forEach
 
+```javascript
 for (let i = 0; i < companies.length; i++) {
     console.log(companies[i]);
 }
@@ -1572,9 +1574,11 @@ for (let i = 0; i < companies.length; i++) {
 companies.forEach(function(company) {
     console.log(company.name);
 });
+```
 
-//********* filter */
+## filter
 
+```javascript
 // Get elements with age over 21
 
 //using for loop
@@ -1609,9 +1613,11 @@ console.log(eightiesCompanies);
 // Get companies that lasted at least 10 years
 const lastedTenYears = companies.filter(company => (company.end - company.start) >= 10);
 console.log(lastedTenYears);
+```
 
-//********* map */
+## map
 
+```javascript
 // Create an array of company names
 const companyNames = companies.map(company => company.name);
 console.log(companyNames);
@@ -1630,9 +1636,13 @@ const agesDoubleMap = ages
     .map(age => age * 2);
 
 console.log(agesDoubleMap);
+```
 
-//********* sort */
+### sort
 
+The sort() method sorts the elements of an array in place and returns the sorted array. The default sort order is ascending, built upon converting the elements into strings, then comparing their sequences of UTF-16 code units values.
+
+```javascript
 // Sort companies by start year
 const sortedCompanies = companies.sort(function(a, b) {
     if (a.start > b.start) {
@@ -1656,8 +1666,59 @@ console.log(ages.sort((a, b) => a - b));
 // Now in decrescent order
 console.log(ages.sort((a, b) => b - a));
 
-//********* reduce */
+// Another examples
+listOfHotels = [
+    {name: 'powerscourt', stars: 5, rating: 4.1, distanceFromCityCentre: 5000},
+    {name: 'moldron', stars: 3, rating: 3.7, distanceFromCityCentre: 2000},
+    {name: 'ibis', stars: 4, rating: 4.0, distanceFromCityCentre: 3000},
+    {name: 'hilton', stars: 5, rating: 4.7, distanceFromCityCentre: 1500},
+    {name: 'charlemont', stars: 2, rating: 4.2, distanceFromCityCentre: 7500},
+    {name: 'portobelo', stars: 4, rating: 3.5, distanceFromCityCentre: 500}
+];
 
+// sorting an array of objects
+// by the rating of the hotel
+function sortByRating(a, b) {
+    if (a.rating > b.rating) {
+        return 1;
+    } else if (a.rating < b.rating) {
+        return -1;
+    } else {
+        return 0;
+    }
+}
+
+// sorting numbers
+const increasingOrder = [...listOfHotels].sort(sortByRating);
+const decreasingOrder = [...listOfHotels].sort((a, b) => a.rating - b.rating).reverse();
+
+// sorting strings by the name of the hotel
+// these lines of code won't work
+// const sortByName = [...listOfHotels].sort();
+// sortByName = [...listOfHotels].sort((a, b) => a.name - b.name);
+
+function sortByName(a, b) {
+    if (a.name > b.name) {
+        return 1;
+    } else if (a.name < b.name) {
+        return -1;
+    } else {
+        return 0;
+    }
+}
+
+sortByName = [...listOfHotels].sort(sortByName);
+
+// printing the results
+console.log(listOfHotels);
+console.log(increasingOrder);
+console.log(decreasingOrder);
+console.log(sortByName);
+```
+
+### reduce
+
+```javascript
 // Sum all ages in the ages array
 let ageSum = 0;
 for (let i = 0; i < ages.length; i++) {
