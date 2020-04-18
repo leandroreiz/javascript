@@ -1,182 +1,185 @@
-//Functional Classes
-
 /*
+Functional Classes
+
 Using Functions
 
 1. Define a normal JavaScript function.
 2. Create an object by using the new keyword.
 3. Define properties and methods for a created object using the this keyword.
+*/
 
 function Fruit(type) {
     this.type = type;
     this.color = 'unknown';
     this.getInformation = getFruitInformation;
-    
-    //we could do the function declarion inside the class also
-    //this.getInformation = function () {
-    //    return `This ${this.type} is ${this.color}.`;
-    //}
 }
 
 function getFruitInformation() {
     return `This ${this.type} is ${this.color}.`;
 }
 
-let lime = new Fruit('Mexican Lime');
+let lime = new Fruit('Mexican lime');
 console.log(lime.getInformation());
 
 lime.color = 'green';
 console.log(lime.getInformation());
 
+// we can also define the getInformation function internally
+
+function FruitInnerFunction(type) {
+    this.type = type;
+    this.color = 'unknown';
+    this.getInformation = () => `This ${this.type} is ${this.color}.`;
+}
+
+let papaya = new FruitInnerFunction('Brazilian papaya');
+papaya.color = 'yellow';
+console.log(papaya.getInformation());
+
+/*
 The Prototype Property
 
-The drawback of internally defining the getInformation function is that it recreates that function every time we create a new Fruit object. Fortunately, every function in JavaScript has something called a prototype property, which is empty by default. We can think of a function's prototype as an object blueprint or paradigm; when we add methods and properties to the prototype, they are accessible to all instances of that function. This is especially useful for inheritance (discussed below).
+The drawback of internally defining the getInformation function is that it recreates that function every time we create a new Fruit object. Fortunatelly, every function in JavaScript has something called a prototype property, which is empty by default. We can think of a function's prototype as an object blueprint or paradigm; when we add methods and properties to the prototype, they are accessible to all instances od that function. This is especially useful for inheritance (discussed below).
 
 We can add a function to our constructor function's prototype like so:
+*/
 
-
-function Fruit (type) {
+function FruitPrototype(type) {
     this.type = type;
     this.color = 'unknown';
 }
 
-Fruit.prototype.getInformation = function() {
+FruitPrototype.prototype.getInformation = function () {
     return `This ${this.type} is ${this.color}.`;
 }
 
-let lime = new Fruit('Brazilian Lime');
-console.log(lime.getInformation());
+let plum = new FruitPrototype('Spanish plum');
+plum.color = 'bright yellow';
+console.log(plum.getInformation());
 
-lime.color = 'green';
-console.log(lime.getInformation());
+/*
+Using Object Literals
 
-let apple = new Fruit('Argentinian Apple');
-apple.color = 'red';
-console.log(apple.getInformation());
+We can use object literals to define an object's properties and functions by initializing a variable with a comma-separated list of property-value pairs enclosed in curly braces.
+*/
 
-//Using Object Literals
-
-//We can use object literals to define an object's properties and functions by initializing a variable with a comma-separated list of property-value pairs enclosed in curly braces.
-
-
-let lime = {
-    type: 'Mexican Lime',
-    color: 'green',
+let apple = {
+    type: 'Chilean apple',
+    color: 'red',
     getInformation: function() {
         return `This ${this.type} is ${this.color}.`;
     }
 }
 
-console.log(lime.getInformation());
+console.log(apple.getInformation());
 
-lime.color = 'yellow';
-console.log(lime.getInformation());
+apple.color = 'dark red';
+console.log(apple.getInformation());
 
-//Singleton Class Using a Function
+/*
+Singleton Class Using a Function
 
-//A singleton class is a design pattern that restricts a class to a single instance. When we assign the value of new function(){...} to a variable, the following happens:
+A singleton class is a design pattern that restricts a class to a single instance. When we assign the value of 'new function() {...}' to a variable, the following happens:
 
-//We define an anonymous constructor function.
-//We invoke the anonymous constructor function with the new keyword.
+1. We define an anonymous constructor function.
+2. We invoke the anonymous constructor function with the 'new' keyword.
+*/
 
-
-let lime = new function () {
-    this.type = 'Mexican lime';
-    this.color = 'green';
+let strawberry = new function() {
+    this.type = 'Irish strawberry';
+    this.color = 'pink-ish';
     this.getInformation = function() {
         return `This ${this.type} is ${this.color}.`;
     };
 }
 
-console.log(lime.getInformation());
+console.log(strawberry.getInformation());
+strawberry.color = 'red';
+console.log(strawberry.getInformation());
 
-lime.color = 'yellow';
-console.log(lime.getInformation());
+/*
+Classes
 
-
-/////////////////////////////////////
-// CLASSES /////////////////////////
-///////////////////////////////////
-
-JavaScript classes, introduced in ECMAScript 6, are essenctially syntatic sugar over JavaScript's existing prototype-based inheritance that don't actually introduce a new object-oriented inheritance model. This syntax is a means of more simply and clearly creating objects and deal with inheritance.
+JavaScript classes, introduced in ECMAScript 6, are essentially syntactic sugar over JavaScript's existing prototype-based inheritance that don't actually introduce a new object-oriented inheritance model. This syntax is a means of more simply and clearly creating objects and deal with inheritance.
 
 We define classes in two ways:
 
-Class declarations
+Class Declarations
 
-One way to define a class is using a class declaration.To declare a class, we use the class keyword and follow it with the class' name. Ideally, we always write class names in TitleCase.
-
+One way to define a class is using a class declaration. To declare a class, we use the class keyword and follow it the class' name. Ideally, we always write class names in TitleCase.
+*/
 
 class Polygon {
-    constructor (height, width) {
+    constructor(height, width) {
         this.height = height;
         this.width = width;
     }
 }
 
-let p = new Polygon(1, 2);
-console.log('Polygon p: ', p);
+let poly = new Polygon(1, 2);
+console.log('Polygon p:', poly);
 
-//An important difference between function declarations and class declarations is that function declarations are hoisted (i.e., can be referenced before they're declared) but class declarations are not. This means we must first declare our class before attempting to access (or reference) it; if we fail to do so, our code throws a ReferenceError.
-
+/*
+An important difference between function declarations and class declarations is that function declarations are hoisted (i.e., can be referenced before they're declared) but class declarations are not. This means we must first declare our class before attempting to access (or reference) it; if we fail to do so, our code throws a ReferenceError.
+*/
 
 try {
-    let p = new Polygon(1, 2);
-    console.log('Polygon p: ', p);
+    let polyError = new PolygonError(1, 2);
+    console.log('Polygon p:', polyError);
 }
 catch (exception) {
-    console.log(exception.name + ': ' + exception.message);
+    console.log(`${exception.name} : ${exception.message} `);
 }
 
-class Polygon {
-    constructor (height, width) {
-        this.height = height;
-        this.width = width;
-    }
-}
-
-p = new Polygon(1, 2);
-console.log('Polygon p: ', p);
-
-//Class Expressions
-
-//Class expressions are another way to define a class, and they can be either named or unnamed. The name given to a named class expression is local to the class' body.
-
-//Unnamed Class Expression
-
-let Polygon = class {
+class PolygonError {
     constructor(height, width) {
         this.height = height;
         this.width = width;
     }
 };
 
-console.log('Polygon: ', Polygon);
-let p = new Polygon(1, 2);
-console.log('p: ', p);
+/*
+Class Expressions
 
-//Named Class Expression
-let Polygon = class Polygon {
+Class expressions are another way to define a class, and they can be either named or unnamed. The name given to a named class expression is local to the class' body.
+*/
+
+// Unnamed Class Expression
+let PolygonUnnamed = class {
     constructor(height, width) {
         this.height = height;
         this.width = width;
     }
 };
 
-console.log('Polygon: ', Polygon);
-let p = new Polygon(1, 2);
-console.log('p: ', p);
+console.log('Polygon:', PolygonUnnamed);
+let unnamed = new PolygonUnnamed(1, 2);
+console.log('unnamed:', unnamed);
 
-//The Constructor Method
+// Named Class Expression
+let PolygonNamed = class PolygonNamed {
+    constructor(height, width) {
+        this.height = height;
+        this.width = width;
+    }
+};
 
-//The constructor method is a special method we use to create and initialize objects of a class.
-//A class can only have one special method with the name constructor, and attempting to write a class containing more than one constructor method will throw a SyntaxError.
-//To implement inheritance, we can use the super keyword in a constructor to call a parent class constructor.
+console.log('Polygon:', PolygonNamed);
+let named = new PolygonNamed(1, 2);
+console.log('named:', named);
 
-//Prototype Methods
+/*
+The Constructor Method
 
+- The constructor method is a special method we use to create and initialize objects of a class.
 
-class Polygon {
+- A class can only have one special method with the name constructor, and attempting to write a class containing more than one constructor method will throw a SyntaxError.
+
+- To implement inheritance, we can use the super keyword in a constructor to call a parent class constructor.
+*/
+
+// Prototype Methods
+class PolygonPrototyped {
     constructor(height, width) {
         this.height = height;
         this.width = width;
@@ -184,17 +187,18 @@ class Polygon {
     getArea() {
         return this.height * this.width;
     }
-}
+};
 
-const square = new Polygon(10, 10);
+const square = new PolygonPrototyped(10, 10);
 console.log(square.getArea());
 
-//Static Methods
+/*
+Static Methods
 
-Static Methods are methods relevant to all instances of a class - not just any one instance. These methods receive information from their arguments and not a class instance, which allows us to invoke a class' static methods without creating an instance of the class. In fact, we actually can't call a static method on an instantiated class object (attempting to do so throws a TypeError).
+Static methods are methods relevant to all instances of a class - not just any one instance. These methods receive information from their arguments and now a class instance, which allows us to invoke a class' static methods without creating an instance of the class. In fact, we actually can't call a static method on an instantiated class object (attempiting to do so throws a TypeError).
 
-We define a class' static methods using the 'static' keyword. We tipically use these methods to create utility functions for applications, as they can't be called on class objects.
-
+We define a class' static methods using the static keyword. We typically use these methods to create utility functions for applications, as they can't be called on class objects.
+*/
 
 class Point {
     constructor(x, y) {
@@ -206,29 +210,31 @@ class Point {
         const dy = a.y - b.y;
         return Math.sqrt(dx * dx + dy * dy);
     }
-}
+};
 
 const p1 = new Point(5, 5);
 const p2 = new Point(10, 10);
 
-//the correct way to call a static method
+// The correct way to call a static method
 console.log(Point.distance(p1, p2));
 
-//attempt to call a static method on an instance of the class
+// Attempt to call a static method on an instance of the class
 try {
     console.log(p1.distance(p1, p2));
 }
 catch (exception) {
-    console.log(exception.name + ': ' + exception.message);
+    console.log(`${exception.name} : ${exception.message}`);
 }
 
-//Inheritance
+/*
+Inheritance
 
-In essence, this construct allows is to create an object prototype or class that's an extension of another object prototype or class. A class inheriting from some other class (referred to as a superclass or parent class) is called a subclass (or child class). The subclass inherits the superclass' methods and behaviors, but it can also declare new ones or even override existing ones.
+In essence, this construct allows us to create an object prototype or class that's an extension of another object prototype or class. A class inheriting from some other class (referred to as a superclass or parent class) is called a subclass (or child class). The subclass inherits the superclass' methods and behaviors, but it can also declare new ones or even override existing ones.
 
-//Subclassing with the 'extends' Keyword
+Subclassing with the extends Keyword
 
-//We use 'extends' keyword in class declarations or class expressions to create a child class (i.e., subclass).
+We use the extends keyword in class declarations or class expressions to create a child class (i.e., subclass).
+*/
 
 class Animal {
     constructor(name) {
@@ -237,7 +243,7 @@ class Animal {
     speak() {
         console.log(this.name, 'speaks.');
     }
-}
+};
 
 class Dog extends Animal {
     speak() {
@@ -245,70 +251,71 @@ class Dog extends Animal {
     }
 }
 
-let spot = new Dog('Spot');
-spot.speak();
+let nina = new Dog('Nina');
+nina.speak();
 
-spot = new Animal('Spot');
-spot.speak();
+nina = new Animal('Nina');
+nina.speak();
 
-//we can also extend functional classes:
+// We can also extend functional classes
 
-
-function Animal(name) {
+function AnimalFunction(name) {
     this.name = name;
 }
 
-Animal.prototype.speak = function() {
+AnimalFunction.prototype.speak = function() {
     console.log(this.name, 'speaks.');
 }
 
-class Dog extends Animal {
+class Cat extends AnimalFunction {
     speak() {
-        console.log(this.name, 'barks.');
+        console.log(this.name, 'meows.')
     }
-}
+};
 
-let spot = new Dog('Spot');
-spot.speak();
+let tony = new Cat('Tony');
+tony.speak();
 
-spot = new Animal('Spot');
-spot.speak();
+tony = new AnimalFunction('Tony');
+tony.speak();
 
-//Superclass Calls Using the 'super' Keyword
+/*
+Superclass Calls Using the super Keyword
 
-//We can use the super keyword to call functions on an object's parent.
+We use the super keyword to call functions on an object's parent.
+*/
 
-
-
-class Animal {
+class AnimalSuper {
     constructor(name) {
         this.name = name;
     }
     speak() {
         console.log(this.name, 'speaks.');
     }
-}
+};
 
-class Dog extends Animal {
+class Pig extends AnimalSuper {
     speak() {
         super.speak();
-        console.log(this.name, 'barks.');
+        console.log(this.name, 'squeaks.');
     }
 }
 
-let spot = new Dog('Spot');
-spot.speak();
+let peter = new Pig('Peter');
+peter.speak();
 
-//Extending an Object
+/*
+Extending an Object
 
-//The ability to extend multiple classes from the same superclass (or model multiple object types after the same prototype) is powerful because it provides us with certain implied guarantees about the basic functionality of the subclasses; as extensions of the parent class, subclasses are guaranteed to (at minimum) have the superclass' fields, methods, and functions.
+The ability to extend multiple classes from the same superclass (or model multiple object types after the same prototype) is powerful because it provides us with certain implied guarantees about the basic functionality of the subclasses; as extensions of the parent class, subclasses are guaranteed to (at minimum) have the superclass' fields, methods, and functions.
 
-//In this example, we call the superclass constructor using 'super()', override a superclass function (speak()), add an additional property (collaColor), and add a new subclass method (collar()).
+Example:
+In this example, we call the superclass constructor using super(), override a superclass function (speak()), add an additional property (collarColor), and add a new subclass method (collar()).
+*/
 
-
-class Animal {
+class AnimalFinal {
     constructor(name) {
-        this.animalType = 'Animal';
+        this.animalType = 'animal';
         this.name = name;
     }
     type() {
@@ -319,63 +326,33 @@ class Animal {
     }
 }
 
-class Dog extends Animal {
+class Dolphin extends AnimalFinal {
     constructor(name, collarColor) {
         super(name);
-        this.animalType = 'Dog';
+        this.animalType = 'dolphin';
         this.collarColor = collarColor;
     }
     speak() {
-        console.log(this.name, 'barks.');
+        console.log(this.name, 'whistles.');
     }
     collar() {
         console.log(this.name, 'has a', this.collarColor, 'collar.');
     }
 }
 
-let spot = new Dog('Spot', 'red');
-spot.type();
-spot.speak();
-spot.collar();
+let flipper = new Dolphin('Flipper', 'blue');
+flipper.type();
+flipper.speak();
+flipper.collar();
 
-//because the Animal constructor only expects one argument, only the first value passed to it is used
-spot = new Animal('Spot', 'white');
-spot.type();
-spot.speak();
+// Because the AnimalFinal constructor only expects one argument,
+// only the first value passed to it is used
+wally = new AnimalFinal('Wally', 'white');
+wally.type();
+wally.speak();
 try {
-    spot.collar();
+    wally.collar()
 }
 catch (exception) {
-    console.log(exception.name + ': ' + exception.message
-    + ' (collar is a method of Dog, not Animal).');
+    console.log(`${exception.name} : ${exception.message} (collar is a method of Dolphin, not AnimalFinal).`);
 }
-*/
-class Rectangle {
-    constructor(w, h) {
-        this.w = w;
-        this.h = h;
-    }
-}
-
-/*
- *  Write code that adds an 'area' method to the Rectangle class' prototype
- */
-Rectangle.prototype.area = function() {
-    return this.w * this.h;
-}
-
-/*
- * Create a Square class that inherits from Rectangle and implement its class constructor
- */
-class Square extends Rectangle {
-    constructor(w, h) {
-        super(w);
-        this.h = w; // squares have the 4 sides with the same size
-    }
-}
-
-const rec = new Rectangle(3, 4);
-const sqr = new Square(3);
-
-console.log(rec.area());
-console.log(sqr.area());
