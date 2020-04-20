@@ -1564,7 +1564,7 @@ const companies = [
 const ages = [33, 12, 20, 16, 5, 54, 21, 44, 61, 13, 15, 45, 25, 64, 32];
 ```
 
-## forEach
+### forEach
 
 ```javascript
 for (let i = 0; i < companies.length; i++) {
@@ -1576,7 +1576,7 @@ companies.forEach(function(company) {
 });
 ```
 
-## filter
+### filter
 
 ```javascript
 // Get elements with age over 21
@@ -1615,7 +1615,7 @@ const lastedTenYears = companies.filter(company => (company.end - company.start)
 console.log(lastedTenYears);
 ```
 
-## map
+### map
 
 ```javascript
 // Create an array of company names
@@ -2101,4 +2101,83 @@ try {
 catch (exception) {
     console.log(`${exception.name} : ${exception.message} (collar is a method of Dolphin, not AnimalFinal).`);
 }
+```
+
+## AJAX & JSON
+
+**AJAX**, stands for **A**synchronous **J**avaScript **A**nd **X**ML, is a set of web development techniques using many web technologies on the client side to create asynchronous web applications. With Ajax, web applications can send and retrieve data from a server asynchronously (in the background) without interfering with the display and behavior of the existing page. By decoupling the data interchange layer from the presentation layer, Ajax allows web pages and, by extension, web applications, to change content dynamically without the need to reload the entire page. In practice, modern implementations commonly utilize JSON instead of XML.
+
+**JSON**, stands for **J**ava**S**cript **O**bject **N**otation, is an open standard file format, and data interchange format, that uses human-readable text to store and transmit data objects *consisting of attribute–value pairs (Objects in JavaScript) and array data types (or any other serializable value)*.
+
+JSON example file:
+
+```json
+[
+    {
+        "name": "Meowsy",
+        "species": "cat",
+        "foods": {
+            "likes": [
+                "tuna",
+                "catnip"
+            ],
+            "dislikes": [
+                "ham",
+                "zucchini"
+            ]
+        }
+    },
+    {
+        "name": "Barky",
+        "species": "dog",
+        "foods": {
+            "likes": [
+                "bones",
+                "carrots"
+            ],
+            "dislikes": [
+                "tuna"
+            ]
+        }
+    }
+]
+```
+
+Using **XMLHttpRequest (XHR)** objects to interact with servers, makes possible to retrieve data from a URL without having to do a full page refresh. This enables a Web page to update just part of a page without disrupting what the user is doing. XMLHttpRequest is used heavily in AJAX programming.
+
+**Constructor:**
+
+```XMLHttpRequest()```
+The constructor initializes an XMLHttpRequest. It must be called before any other method calls.
+
+**Properties:**
+
+```XMLHttpRequest.responseText``` - Read only
+Returns a DOMString that contains the response to the request as text, or null if the request was unsuccessful or has not yet been sent.
+
+```XMLHttpRequest.status``` - Read only
+Returns an unsigned short with the status of the response of the request.
+
+**Methods:**
+
+```XMLHttpRequest.open()```
+Initializes a request.
+
+```XMLHttpRequest.send()```
+Sends the request. If the request is asynchronous (which is the default), this method returns as soon as the request is sent.
+
+To read more about XHR go to: <https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest>
+
+```javascript
+myRequest = new XMLHttpRequest();
+myRequest.open('GET', `https://learnwebcode.github.io/json-example/animals-${pageCounter}.json`);
+myRequest.onload = () => {
+    if (myRequest.status >= 200 && myRequest.status < 400) {
+        let myData = JSON.parse(myRequest.responseText);
+        renderHTML(myData);
+    } else {
+        console.log('We connected to the server, but it returned an error.');
+    }
+}
+myRequest.send();
 ```
